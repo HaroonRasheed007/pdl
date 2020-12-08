@@ -12,6 +12,7 @@ function SignUp (props) {
         if (!username) {
             event.preventDefault();
             alert('Username cannot be blank!')
+            
         }
 
         else if (!password) {
