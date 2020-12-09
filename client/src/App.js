@@ -7,6 +7,7 @@ import Users from './components/Users.js';
 import Orders from './components/Orders.js';
 import NewOrder from './components/NewOrder.js';
 import Header from './components/Header.js';
+import LogIn from './components/LogIn.js';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
             <Route path = '/Users'>    <Users/>     </Route>
             <Route path = '/Orders'>    <Orders/>     </Route>
             <Route path = '/NewOrder'>    <NewOrder/>     </Route>
+            <Route path = '/LogIn'>  <LogIn />   </Route>
             
 
 

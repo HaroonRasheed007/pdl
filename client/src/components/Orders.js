@@ -1,44 +1,40 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 
 function Orders () {
+
+    const [orders, setOrders] = useState([]);
+
+    useEffect (() => {
+        fetch('http://localhost:5000/orders/')
+            .then (res => res.json())
+            .then ((result) => {setOrders(result)})
+
+
+
+    },[])
+
+
     return(
         <div className = "container">
             <table className="table mt-2">
                 <thead>
                     <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Patient Name</th>
                     <th>Test Type</th>
-                    <th>Order Status</th>
+                    <th>Test Status</th>
                     </tr>
                 </thead>
 
                 <tbody className = "table-success">
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Jason</td>
-                    <td>Bourne</td>
-                    <td>1</td>
-                    <td>Pending</td>
-                    </tr>
-
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>James</td>
-                    <td>Bond</td>
-                    <td>4</td>
-                    <td>Pending</td>
-                    </tr>
-
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Hunt</td>
-                    <td>Ethan</td>
-                    <td>2</td>
-                    <td>Pending</td>
-                    </tr>
-
+                   
+                    {orders.map(order => (
+                        <tr key = {order.orderId}>
+                            <td>{order.patientFirstname} {order.patientLastname}</td>
+                            <td>{order.orderType}</td>
+                            <td>{order.orderStatus}</td>
+                        
+                        </tr>
+                    ))}
 
                 </tbody>
             </table>

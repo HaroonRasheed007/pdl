@@ -1,18 +1,18 @@
-import React, { useState} from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-function SignUp (props) {
+function LogIn () {
     
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    
     
     const handleSubmit = (event) => {
 
         if (!username) {
             event.preventDefault();
             alert('Username cannot be blank!')
-
         }
 
         else if (!password) {
@@ -21,28 +21,29 @@ function SignUp (props) {
         }
 
         else {
-
             const user = {
                 username: username,
                 password: password
             }
 
-            console.log(user);
+            console.log(user)
 
-            axios.post('http://localhost:5000/users/signup', user)
-
-                .then(alert('User created!'))
-
-                .catch(error => console.log(error))
-                
-
+            axios.post('http://localhost:5000/users/login', user)
+                .then ()
+                .catch (error => {
+					event.preventDefault();    
+        			alert('Username and password combination invalid!')
+                })
+            }
+        
         }
 
-    }  
-
 
     
     
+
+
+
     return(
         <div>
             
@@ -60,13 +61,17 @@ function SignUp (props) {
                 />
 
                 <Link onClick = {handleSubmit} to = '/'>
-                    <button className="btn btn-success"> Create Account </button>
+                    <button className="btn btn-success">
+                        Sign In 
+                    </button>
                 </Link>
 
             </form>
+        
+        
         </div>
     )
 }
 
 
-export default SignUp;
+export default LogIn;

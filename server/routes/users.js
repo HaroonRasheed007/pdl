@@ -38,17 +38,9 @@ router.route('/edituser/:id').post((req, res) => {
 
 router.route('/:id').delete((req, res) => {
     User.findOneAndDelete({username:req.params.id})
-    .then(user => res.json('User deleted!'))
+    .then(() => res.json('User deleted!'))
     .catch(err => res.status(400).json('Error: ' + err))
 });
-
-
-/*router.route('/login').post((req, res, next) => {
-    userService.authenticate(req.body)
-    .then (user => res.json(user))
-    .catch(next);
-
-}); */
 
 
 

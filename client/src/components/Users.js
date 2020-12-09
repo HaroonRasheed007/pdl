@@ -1,39 +1,43 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 
 function Users () {
+
+    const [users, setUsers] = useState([]);
+
+    useEffect (() => {
+        fetch('http://localhost:5000/users/')
+            .then (res => res.json())
+            .then ((result) => {setUsers(result)})
+
+
+
+    },[])
+
+
+
+
     return(
         <div className = "container">
             <table className="table mt-2">
                 <thead>
                     <tr>
-                    <th>#</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th>Name</th>
+                    <th>Username</th>
+
                     </tr>
                 </thead>
 
                 <tbody className = "table-success">
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Tom</td>
-                    <td>Riddle</td>
-                    <button className="btn btn-success"> Details </button>
-                    </tr>
-
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Newt</td>
-                    <td>Scamander</td>
-                    <button className="btn btn-success"> Details </button>
-                    </tr>
-
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Albus</td>
-                    <td>Dumbledore</td>
-                    <button className="btn btn-success"> Details </button>
-                    </tr>
-
+                   
+                    {users.map(user => (
+                        <tr key = {user.username}>
+                            <td>{user.firstname} {user.lastname}</td>
+                            <td>{user.username}</td>
+                            <button className = "btn btn-success">
+                                Details
+                            </button>
+                        </tr>
+                    ))}
 
                 </tbody>
             </table>
